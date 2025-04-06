@@ -45,6 +45,7 @@ $ yarn run start:dev
 $ yarn run start:prod
 
 ```
+
 ## Executing from the terminal
 
 ```bash
@@ -52,6 +53,7 @@ $ yarn run start:cli
 ```
 
 > Help
+>
 > ```
 > yarn run start:cli --help
 > ```
@@ -68,6 +70,13 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
+
+## Algorithm methods implemented
+
+- [x] **Bisection method** - `Метод на разполовяването`
+- [x] **Chord method** - `Метод на хордите`
+- [x] **Secant method** - `Метод на секущите`
+
 
 ## Support
 
