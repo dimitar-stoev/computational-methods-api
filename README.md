@@ -77,7 +77,6 @@ $ yarn run test:cov
 - [x] **Chord method** - `Метод на хордите`
 - [x] **Secant method** - `Метод на секущите`
 
-
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).

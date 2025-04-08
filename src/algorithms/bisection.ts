@@ -1,5 +1,6 @@
 import { Decimal } from "decimal.js";
 import { evaluate } from "mathjs";
+import { HttpException, HttpStatus } from "@nestjs/common";
 
 Decimal.set({ precision: 10 });
 
@@ -19,7 +20,10 @@ export function bisection(equation: string, a, b, epsilon) {
   let right = bDec;
 
   if (f(left).mul(f(right)).greaterThan(0)) {
-    throw new Error("The function must have different signs at the endpoints.");
+    throw new HttpException(
+      "The function must have different signs at the endpoints.",
+      HttpStatus.BAD_REQUEST,
+    );
   }
 
   const iterations = [];
@@ -44,5 +48,8 @@ export function bisection(equation: string, a, b, epsilon) {
   }
 
   console.table(iterations);
-  return left.plus(right).div(2).toString();
+  return {
+    table: iterations,
+    result: left.plus(right).div(2).toString(),
+  };
 }
