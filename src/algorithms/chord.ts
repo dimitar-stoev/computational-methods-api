@@ -43,5 +43,8 @@ export function chord(equation, a, b, epsilon) {
   }
 
   console.table(iterations);
-  return x1.toString();
+  return {
+    table: iterations,
+    result: x1.toString(),
+  }
 }

@@ -21,4 +21,17 @@ export class NumericalController {
       body.epsilon,
     );
   }
+
+  @Post("chord")
+    chord(
+        @Body()
+        body: BisectionEquationRequest,
+    ): BisectionEquationResponse {
+        return this.numericalService.chordEquation(
+        body.equation,
+        body.lowerBound,
+        body.upperBound,
+        body.epsilon,
+        );
+    }
 }
