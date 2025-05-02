@@ -1,7 +1,10 @@
 import {Injectable} from "@nestjs/common";
 import {bisection} from "../algorithms/bisection";
-import {BisectionEquationResponse} from "./models/equations";
+import {EquationResponse} from "./models/equations";
 import {chord} from "../algorithms/chord";
+import {lagrangeInterpolation} from "../algorithms/lagrange";
+import {newtonInterpolation} from "../algorithms/newton";
+import {leastSquaresPolynomial} from "../algorithms/least-square";
 
 @Injectable()
 export class NumericalService {
@@ -10,7 +13,7 @@ export class NumericalService {
         lowerBound: number,
         upperBound: number,
         epsilon: number,
-    ): BisectionEquationResponse {
+    ): EquationResponse {
         const response = bisection(equation, lowerBound, upperBound, epsilon);
 
         if (response === null) {
@@ -35,8 +38,104 @@ export class NumericalService {
         lowerBound: number,
         upperBound: number,
         epsilon: number,
-    ): BisectionEquationResponse {
+    ): EquationResponse {
         const response = chord(equation, lowerBound, upperBound, epsilon);
+
+        if (response === null) {
+            return {
+                result: "No solution found",
+                table: [],
+            };
+        }
+
+        if (typeof response === "string") {
+            return {
+                result: response,
+                table: [],
+            };
+        }
+
+        return response;
+    }
+
+    secantEquation(
+        equation: string,
+        lowerBound: number,
+        upperBound: number,
+        epsilon: number,
+    ): EquationResponse {
+        const response = bisection(equation, lowerBound, upperBound, epsilon);
+
+        if (response === null) {
+            return {
+                result: "No solution found",
+                table: [],
+            };
+        }
+
+        if (typeof response === "string") {
+            return {
+                result: response,
+                table: [],
+            };
+        }
+
+        return response;
+    }
+
+    lagrangeEquation(
+        points: [number, number][],
+        xValue: number,
+        digits: number = 4,
+        trueFunction: boolean = false,
+    ) {
+        const response = lagrangeInterpolation(points, xValue, digits, trueFunction);
+        if (response === null) {
+            return {
+                result: "No solution found",
+                table: [],
+            };
+        }
+
+        if (typeof response === "string") {
+            return {
+                result: response,
+                table: [],
+            };
+        }
+
+        return response;
+    }
+
+    newtonEquation(
+        points: [number, number][],
+        xValue: number,
+        digits: number = 4,
+        actualFunction: boolean = false,
+    ) {
+        const response = newtonInterpolation(points, xValue, digits, actualFunction);
+        if (response === null) {
+            return {
+                result: "No solution found",
+                table: [],
+            };
+        }
+
+        if (typeof response === "string") {
+            return {
+                result: response,
+                table: [],
+            };
+        }
+
+        return response;
+    }
+
+    leastSquare(
+        points: [number, number][],
+        degree: number,
+    ) {
+        const response = leastSquaresPolynomial(points, degree);
 
         if (response === null) {
             return {

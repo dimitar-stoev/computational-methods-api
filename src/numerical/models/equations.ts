@@ -3,22 +3,22 @@ export interface EquationNavigation {
   href: string;
 }
 
-export interface BisectionEquation {
+export interface Equation {
   equation: string;
   lowerBound: number;
   upperBound: number;
   epsilon: number;
 }
 
-export type BisectionEquationRequest = {
+export type EquationRequest = {
   [k in
     | "equation"
     | "lowerBound"
     | "upperBound"
-    | "epsilon"]: BisectionEquation[k];
+    | "epsilon"]: Equation[k];
 };
 
-export interface BisectionEquationResponse {
+export interface EquationResponse {
   result: string;
   table: Iterations[];
 }
