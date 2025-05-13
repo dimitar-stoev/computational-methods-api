@@ -11,11 +11,7 @@ export interface Equation {
 }
 
 export type EquationRequest = {
-  [k in
-    | "equation"
-    | "lowerBound"
-    | "upperBound"
-    | "epsilon"]: Equation[k];
+  [k in "equation" | "lowerBound" | "upperBound" | "epsilon"]: Equation[k];
 };
 
 export interface EquationResponse {

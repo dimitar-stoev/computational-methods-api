@@ -46,5 +46,5 @@ export function chord(equation, a, b, epsilon) {
   return {
     table: iterations,
     result: x1.toString(),
-  }
+  };
 }
